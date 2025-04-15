@@ -145,6 +145,7 @@ NexT.utils = {
         var winHeight = window.innerHeight;
         var contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight;
         var scrollPercent = Math.min(100 * window.scrollY / contentVisibilityHeight, 100);
+// 禁止任何自动回弹或滚动，仅用于显示进度和按钮状态
         if (backToTop) {
           backToTop.classList.toggle('back-to-top-on', window.scrollY > THRESHOLD);
           backToTop.querySelector('span').innerText = Math.round(scrollPercent) + '%';
