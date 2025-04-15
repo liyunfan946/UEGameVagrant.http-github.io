@@ -1,0 +1,29 @@
+body {
+  background: linear-gradient(135deg, #23272f 0%, #232b36 100%) !important;
+  color: #e3e6eb !important;
+}
+
+.site-nav, .sidebar, .header-inner, .footer, .site-state-wrap, .post-block {
+  background: rgba(34, 38, 49, 0.95) !important;
+  color: #e3e6eb !important;
+}
+
+a, a:visited {
+  color: #6cb6ff !important;
+}
+
+::-webkit-scrollbar {
+  background: #232b36;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444c5c;
+  border-radius: 8px;
+}
+
+pre, code {
+  background: #232b36 !important;
+  color: #b5c9f7 !important;
+}
+
+/* 可根据需要继续美化其他区域 */
