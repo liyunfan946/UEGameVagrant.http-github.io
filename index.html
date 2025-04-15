@@ -159,31 +159,24 @@
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       var isMobile = window.matchMedia('(max-width: 900px)').matches;
-      var tipShown = sessionStorage.getItem('ue5_tip_shown');
-      var tipCreated = false;
-      function showTip() {
-        if (tipCreated) return;
-        tipCreated = true;
+      if (isMobile && !sessionStorage.getItem('ue5_tip_shown')) {
         var tip = document.createElement('div');
-        tip.innerHTML = '<div style="position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;">'+
+        tip.innerHTML = '<div id="ue5-tip-mask" style="position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;">'+
           '<div style="background:#fff;padding:32px 38px 24px 38px;border-radius:14px;box-shadow:0 4px 28px #0003;max-width:90vw;text-align:center;font-size:18px;line-height:2;">'+
           '如需查阅我的个人学习文档请点击<b style="color:#409EFF;">目录</b>，感谢您的支持😀<br><button id="ue5-tip-btn" style="margin-top:18px;padding:6px 22px;background:#409EFF;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;">知道了</button></div></div>';
         document.body.appendChild(tip);
+        // 不锁定body滚动
         document.getElementById('ue5-tip-btn').onclick = function() {
           tip.remove();
           sessionStorage.setItem('ue5_tip_shown', '1');
         };
-      }
-      if (isMobile && !tipShown) {
-        window.addEventListener('scroll', function() {
-          if (tipCreated) return;
-          var scrollTop = window.scrollY || window.pageYOffset;
-          var winHeight = window.innerHeight;
-          var docHeight = document.documentElement.scrollHeight;
-          if (scrollTop + winHeight >= docHeight - 2) {
-            showTip();
+        // 点击遮罩也可关闭弹窗
+        document.getElementById('ue5-tip-mask').onclick = function(e) {
+          if (e.target === this) {
+            tip.remove();
+            sessionStorage.setItem('ue5_tip_shown', '1');
           }
-        });
+        };
       }
     });
   </script>
