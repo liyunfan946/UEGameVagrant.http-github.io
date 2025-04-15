@@ -30,11 +30,12 @@ function startUE5ApiScroll() {
   if (!list) return;
   let scrollTop = 0;
   setInterval(() => {
+    // 只滚动内部列表，不影响主页面
     scrollTop += 1;
-    list.scrollTop = scrollTop;
     if (scrollTop >= list.scrollHeight - list.clientHeight) {
       scrollTop = 0;
     }
+    list.scrollTop = scrollTop;
   }, 60);
 }
 
