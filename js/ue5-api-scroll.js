@@ -19,29 +19,82 @@ function renderUE5ApiScroller() {
   if (document.getElementById('ue5-api-barrage')) return;
   let barrage = document.createElement('div');
   barrage.id = 'ue5-api-barrage';
-  barrage.innerHTML = '';
+  barrage.style.display = 'none'; // 默认隐藏
   document.body.appendChild(barrage);
-  ue5ApiList.forEach((api, idx) => {
-    let item = document.createElement('div');
-    item.className = 'ue5-api-barrage-item';
-    item.innerHTML = `<b>${api.name}</b>：<span>${api.usage}</span>`;
-    item.style.top = (10 + idx * 32) + 'px';
-    barrage.appendChild(item);
-  });
   // 添加右下角按钮
   let toggleBtn = document.createElement('div');
   toggleBtn.id = 'ue5-api-barrage-toggle';
   toggleBtn.innerHTML = 'API弹幕';
   document.body.appendChild(toggleBtn);
+  let barrageVisible = false;
+  let started = false;
   toggleBtn.onclick = function() {
-    // 同时隐藏/显示弹幕容器和所有弹幕内容
-    const isHidden = barrage.style.display === 'none';
-    barrage.style.display = isHidden ? 'block' : 'none';
-    // 按钮自身始终可见
+    barrageVisible = !barrageVisible;
+    barrage.style.display = barrageVisible ? 'block' : 'none';
+    if (barrageVisible && !started) {
+      startUE5ApiBarrage();
+      started = true;
+    }
   };
-  // 默认显示
-  barrage.style.display = 'block';
 }
+
+function startUE5ApiBarrage() {
+  const barrage = document.getElementById('ue5-api-barrage');
+  if (!barrage) return;
+  barrage.innerHTML = '';
+  const screenWidth = window.innerWidth;
+  ue5ApiList.forEach((api, idx) => {
+    let item = document.createElement('div');
+    item.className = 'ue5-api-barrage-item';
+    item.innerHTML = `<b>${api.name}</b>：<span>${api.usage}</span>`;
+    let top = 10 + idx * 32;
+    item.style.top = top + 'px';
+    let left = screenWidth + Math.random()*200;
+    item.style.left = left + 'px';
+    let speed = 1 + Math.random()*1.5;
+    function move() {
+      left -= speed;
+      if (left < -item.offsetWidth) {
+        left = screenWidth + Math.random()*200;
+      }
+      item.style.left = left + 'px';
+      item._barrageTimer = requestAnimationFrame(move);
+    }
+    barrage.appendChild(item);
+    move();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderUE5ApiScroller();
+});
+
+function startUE5ApiBarrage() {
+  const barrage = document.getElementById('ue5-api-barrage');
+  if (!barrage) return;
+  const items = barrage.querySelectorAll('.ue5-api-barrage-item');
+  const screenWidth = window.innerWidth;
+  items.forEach((item, idx) => {
+    let left = screenWidth;
+    item.style.left = left + 'px';
+    item.style.top = (10 + idx * 32) + 'px';
+    let speed = 1 + Math.random()*1.5;
+    function move() {
+      left -= speed;
+      if (left < -item.offsetWidth) {
+        left = screenWidth;
+      }
+      item.style.left = left + 'px';
+      item._barrageTimer = requestAnimationFrame(move);
+    }
+    move();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderUE5ApiScroller();
+  setTimeout(startUE5ApiBarrage, 500);
+});
 
 function startUE5ApiBarrage() {
   const barrage = document.getElementById('ue5-api-barrage');
