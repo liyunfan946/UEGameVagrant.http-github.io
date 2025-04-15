@@ -440,12 +440,12 @@
         window.__canvasNest.destroy();
         window.__canvasNest = null;
       }
-      window.__canvasNest = new window.CanvasNest(document.body, {
+      window.__canvasNest = CanvasNest(document.body, {
         color: '255,255,255',
         count: 88,
         opacity: 0.7,
         zIndex: -1
-      });
+      }); // 修正：新版 CanvasNest 不需要 new
     }
     if (window.CanvasNest) loadCanvasNest();
     else window.addEventListener('DOMContentLoaded', loadCanvasNest);
