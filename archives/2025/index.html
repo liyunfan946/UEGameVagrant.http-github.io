@@ -76,6 +76,12 @@
 </noscript>
 
   <link rel="stylesheet" href="/css/win11-dark.css">
+  <!-- APlayer CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <!-- MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+  <!-- APlayer JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <link rel="alternate" href="/atom.xml" title="Zoomi的虚幻世界" type="application/atom+xml">
 </head>
 
@@ -251,6 +257,19 @@
       src="/images/avatar.jpg" style="border-radius:0;width:120px;height:160px;object-fit:cover;">
   <p class="site-author-name" itemprop="name">Zoomi</p>
   <div class="site-description" itemprop="description">欢迎来到我的虚幻个人博客，不定期更新</div>
+
+  <!-- 在线音乐播放器（QQ音乐示例歌单） -->
+  <meting-js
+    server="tencent"
+    type="playlist"
+    id="1948308000"
+    fixed="true"
+    mini="true"
+    autoplay="false"
+    order="random"
+    loop="all"
+    theme="#409EFF">
+  </meting-js>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
