@@ -12,9 +12,73 @@ body {
 .main {
   flex: 1 0 auto;
   min-height: 60vh;
+  padding: 36px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ue5-recommend-wrap {
+  background: rgba(255,255,255,0.97) !important;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px #0002;
+  padding: 36px 32px 28px 32px !important;
+  margin-bottom: 32px !important;
+}
+.ue5-recommend-wrap h2 {
+  color: #409EFF;
+  font-size: 2rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.ue5-recommend-wrap ul {
+  font-size: 1.1rem;
+  line-height: 2.1;
+  padding-left: 18px;
+}
+.ue5-recommend-wrap li {
+  margin-bottom: 7px;
+  transition: transform 0.2s;
+}
+.ue5-recommend-wrap li:hover {
+  transform: translateX(4px) scale(1.03);
+}
+.ue5-recommend-wrap a {
+  color: #2563eb !important;
+  border-bottom: 1px dashed #409EFF;
+  transition: color 0.2s, border 0.2s;
+}
+.ue5-recommend-wrap a:hover {
+  color: #1a53a0 !important;
+  border-bottom: 1px solid #409EFF;
+}
+.ue5-recommend-wrap > div {
+  color: #888;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.sidebar, .site-state-wrap {
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #0001;
 }
 .footer {
   flex-shrink: 0;
+  background: rgba(34,38,49,0.98) !important;
+  color: #b5c9f7 !important;
+  border-top: 1px solid #232b36;
+  padding: 18px 0 10px 0;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+/* 响应式优化 */
+@media (max-width: 600px) {
+  .ue5-recommend-wrap {
+    padding: 20px 6px 16px 6px !important;
+  }
+  .main {
+    padding: 16px 2px 10px 2px;
+  }
 }
 body {
   background: linear-gradient(135deg, #23272f 0%, #232b36 100%) !important;
