@@ -1,7 +1,7 @@
 // ue5-api-scroll.js
 // 留言弹幕功能
 
-let barrageMessages = [];
+window.barrageMessages = window.barrageMessages || []; // 避免重复声明
 
 function renderBarrage() {
   // 防止重复渲染
@@ -117,7 +117,7 @@ function startUE5ApiBarrage() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderUE5ApiScroller();
+  // renderUE5ApiScroller(); // 函数未定义，已注释
 });
 
 function startUE5ApiBarrage() {
@@ -143,7 +143,7 @@ function startUE5ApiBarrage() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderUE5ApiScroller();
+  // renderUE5ApiScroller(); // 函数未定义，已注释
   setTimeout(startUE5ApiBarrage, 500);
 });
 
@@ -170,7 +170,7 @@ function startUE5ApiBarrage() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderUE5ApiScroller();
+  // renderUE5ApiScroller(); // 函数未定义，已注释
   setTimeout(startUE5ApiBarrage, 500);
 });
 
@@ -189,6 +189,6 @@ function startUE5ApiScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderUE5ApiScroller();
+  // renderUE5ApiScroller(); // 函数未定义，已注释
   setTimeout(startUE5ApiScroll, 500);
 });
