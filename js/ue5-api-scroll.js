@@ -1,20 +1,72 @@
 // ue5-api-scroll.js
-// 虚幻5常用API滚动展示
+// 留言弹幕功能
 
-const ue5ApiList = [
-  { name: 'SpawnActor', usage: '在关卡中生成一个Actor\nUsage: GetWorld()->SpawnActor<AActor>(...)' },
-  { name: 'GetWorld', usage: '获取当前世界对象\nUsage: UWorld* World = GetWorld();' },
-  { name: 'AddDynamic', usage: '为委托添加动态绑定\nUsage: OnClicked.AddDynamic(this, &Class::Func);' },
-  { name: 'FString', usage: 'UE字符串类型\nUsage: FString Str = TEXT("Hello");' },
-  { name: 'UE_LOG', usage: '日志输出\nUsage: UE_LOG(LogTemp, Warning, TEXT("Hello: %d"), Value);' },
-  { name: 'TArray', usage: '动态数组\nUsage: TArray<int32> Arr;' },
-  { name: 'FindComponentByClass', usage: '查找组件\nUsage: FindComponentByClass<UStaticMeshComponent>()' },
-  { name: 'BlueprintImplementableEvent', usage: '蓝图可实现事件\nUsage: UFUNCTION(BlueprintImplementableEvent)' },
-  { name: 'Tick', usage: '每帧调用\nUsage: virtual void Tick(float DeltaTime) override;' },
-  { name: 'GetActorLocation', usage: '获取Actor位置\nUsage: FVector Loc = GetActorLocation();' }
-];
+let barrageMessages = [];
 
-function renderUE5ApiScroller() {
+function renderBarrage() {
+  // 防止重复渲染
+  if (document.getElementById('ue5-msg-barrage')) return;
+  // 弹幕容器
+  let barrage = document.createElement('div');
+  barrage.id = 'ue5-msg-barrage';
+  barrage.style.display = 'none';
+  document.body.appendChild(barrage);
+  // 留言输入框
+  let inputWrap = document.createElement('div');
+  inputWrap.id = 'ue5-msg-barrage-input-wrap';
+  inputWrap.innerHTML = '<input id="ue5-msg-barrage-input" type="text" maxlength="50" placeholder="输入留言弹幕..." /><button id="ue5-msg-barrage-send">发送</button>';
+  document.body.appendChild(inputWrap);
+  // 右下角按钮
+  let toggleBtn = document.createElement('div');
+  toggleBtn.id = 'ue5-msg-barrage-toggle';
+  toggleBtn.innerHTML = '留言弹幕';
+  document.body.appendChild(toggleBtn);
+  let barrageVisible = false;
+  let started = false;
+  toggleBtn.onclick = function() {
+    barrageVisible = !barrageVisible;
+    barrage.style.display = barrageVisible ? 'block' : 'none';
+    inputWrap.style.display = barrageVisible ? 'block' : 'none';
+  };
+  // 发送按钮
+  document.getElementById('ue5-msg-barrage-send').onclick = function() {
+    const input = document.getElementById('ue5-msg-barrage-input');
+    const msg = input.value.trim();
+    if (msg) {
+      barrageMessages.push(msg);
+      showMsgBarrage(msg);
+      input.value = '';
+    }
+  };
+}
+
+function showMsgBarrage(msg) {
+  const barrage = document.getElementById('ue5-msg-barrage');
+  if (!barrage) return;
+  let item = document.createElement('div');
+  item.className = 'ue5-msg-barrage-item';
+  item.innerText = msg;
+  let top = 10 + Math.random() * 100;
+  item.style.top = top + 'px';
+  let left = window.innerWidth;
+  item.style.left = left + 'px';
+  let speed = 1 + Math.random()*1.5;
+  barrage.appendChild(item);
+  function move() {
+    left -= speed;
+    if (left < -item.offsetWidth) {
+      barrage.removeChild(item);
+      return;
+    }
+    item.style.left = left + 'px';
+    item._barrageTimer = requestAnimationFrame(move);
+  }
+  move();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderBarrage();
+});
   // 防止重复渲染
   if (document.getElementById('ue5-api-barrage')) return;
   let barrage = document.createElement('div');
