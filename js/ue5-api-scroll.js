@@ -66,7 +66,6 @@ function showMsgBarrage(msg) {
 
 document.addEventListener('DOMContentLoaded', function() {
   renderBarrage();
-});
   // 防止重复渲染
   if (document.getElementById('ue5-api-barrage')) return;
   let barrage = document.createElement('div');
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
       started = true;
     }
   };
-}
+});
 
 function startUE5ApiBarrage() {
   const barrage = document.getElementById('ue5-api-barrage');
