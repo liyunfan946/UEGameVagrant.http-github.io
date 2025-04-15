@@ -1,4 +1,62 @@
 /* 虚幻5 API 滚动记忆区样式 */
+#ue5-api-barrage {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  pointer-events: none;
+  user-select: none;
+  height: 160px;
+}
+.ue5-api-barrage-item {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 17px;
+  color: #fff;
+  background: rgba(64,158,255,0.9);
+  border-radius: 20px;
+  padding: 5px 18px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 12px #0003;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+#ue5-api-barrage-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 32px;
+  z-index: 10000;
+  background: #409eff;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-size: 16px;
+  box-shadow: 0 2px 8px #0002;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.92;
+  transition: background 0.2s, opacity 0.2s;
+}
+#ue5-api-barrage-toggle:hover {
+  background: #2563eb;
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  #ue5-api-barrage {
+    height: 120px;
+  }
+  .ue5-api-barrage-item {
+    font-size: 14px;
+    padding: 3px 10px;
+  }
+  #ue5-api-barrage-toggle {
+    padding: 7px 16px;
+    font-size: 14px;
+    right: 10px;
+    bottom: 16px;
+  }
+}
 .ue5-api-list {
   display: flex;
   flex-direction: column;
