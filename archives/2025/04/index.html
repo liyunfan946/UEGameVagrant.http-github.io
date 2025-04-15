@@ -282,6 +282,42 @@
     </iframe>
     <div style="text-align:center;font-size:13px;color:#888;margin-top:2px;">AI助手 · 文心一言</div>
   </div>
+
+  <!-- 当前时间显示 -->
+  <div style="text-align:center;font-size:15px;color:#409EFF;margin-top:12px;">
+    <span id="hexo-current-time"></span>
+  </div>
+  <script>
+    function updateHexoTime() {
+      var now = new Date();
+      var y = now.getFullYear();
+      var m = (now.getMonth()+1).toString().padStart(2,'0');
+      var d = now.getDate().toString().padStart(2,'0');
+      var h = now.getHours().toString().padStart(2,'0');
+      var min = now.getMinutes().toString().padStart(2,'0');
+      var s = now.getSeconds().toString().padStart(2,'0');
+      document.getElementById('hexo-current-time').innerText = `${y}-${m}-${d} ${h}:${min}:${s}`;
+    }
+    setInterval(updateHexoTime, 1000);
+    updateHexoTime();
+  </script>
+
+  <!-- 天气预报（和风天气） -->
+  <div style="margin:10px 0;text-align:center;">
+    <iframe src="https://widget.qweather.net/simple/static/index.html?location=101010100&lang=zh&unit=c&theme=light" width="100%" height="60" frameborder="0" scrolling="no" style="border-radius:8px;"></iframe>
+  </div>
+
+  <!-- 访客统计（不蒜子） -->
+  <div style="font-size:13px;color:#888;text-align:center;margin-bottom:4px;">
+    <span id="busuanzi_container_site_pv" style="display:inline;">本站访问量：<span id="busuanzi_value_site_pv"></span></span>
+    <span id="busuanzi_container_site_uv" style="display:inline;margin-left:8px;">访客数：<span id="busuanzi_value_site_uv"></span></span>
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <!-- 留言板入口按钮 -->
+  <div style="text-align:center;margin:8px 0 0 0;">
+    <a href="/message" style="display:inline-block;padding:6px 18px;background:#409EFF;color:#fff;border-radius:16px;font-size:15px;text-decoration:none;box-shadow:0 2px 8px #0001;">💬 留言板</a>
+  </div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -385,5 +421,7 @@
 
   
 
+  <!-- 夜晚流星特效 -->
+  <script src="https://cdn.jsdelivr.net/gh/yellowside/meteor@master/meteor.min.js"></script>
 </body>
 </html>
