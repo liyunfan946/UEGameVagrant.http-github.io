@@ -431,38 +431,6 @@
   <!-- 留言弹幕功能脚本 -->
   <script src="/js/ue5-api-scroll.js"></script>
 
-  <!-- 自动播放音乐播放器 -->
-  <div id="aplayer" class="aplayer" style="position:fixed;bottom:24px;left:24px;width:350px;z-index:9999;"></div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const ap = new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: false,
-        autoplay: true,
-        loop: 'all',
-        order: 'list',
-        volume: 0.7,
-        audio: [
-          {
-            name: '起风了',
-            artist: '买辣椒也用券',
-            url: 'https://music.163.com/song/media/outer/url?id=1330348068.mp3',
-            cover: 'https://p2.music.126.net/1k0vZk4VhZK8K6kW0hH1OA==/109951163713998320.jpg'
-          }
-        ]
-      });
-      // 兼容浏览器自动播放策略
-      function tryPlay() {
-        ap.audio.play();
-        document.body.removeEventListener('click', tryPlay);
-      }
-      ap.audio.addEventListener('play', function() {
-        document.body.removeEventListener('click', tryPlay);
-      });
-      document.body.addEventListener('click', tryPlay);
-    });
-  </script>
-
   <!-- 星空流动特效（canvas-nest.js） -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@2.0.4/dist/canvas-nest.min.js"></script>
   <script>
