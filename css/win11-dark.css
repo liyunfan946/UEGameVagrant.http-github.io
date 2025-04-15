@@ -1,6 +1,9 @@
 html {
   height: 100% !important;
-  overflow-y: auto !important;
+  /* 允许弹性滚动和超出边界，提升体验 */
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: contain;
+  /* 不强制 overflow-y，交给浏览器默认 */
 }
 body {
   min-height: 100vh;
