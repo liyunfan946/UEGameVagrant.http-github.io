@@ -1,3 +1,8 @@
+html, body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+}
 body {
   background: linear-gradient(135deg, #23272f 0%, #232b36 100%) !important;
   color: #e3e6eb !important;
