@@ -15,6 +15,8 @@ const ue5ApiList = [
 ];
 
 function renderUE5ApiScroller() {
+  // 防止重复渲染
+  if (document.getElementById('ue5-api-barrage')) return;
   let barrage = document.createElement('div');
   barrage.id = 'ue5-api-barrage';
   barrage.innerHTML = '';
@@ -32,7 +34,10 @@ function renderUE5ApiScroller() {
   toggleBtn.innerHTML = 'API弹幕';
   document.body.appendChild(toggleBtn);
   toggleBtn.onclick = function() {
-    barrage.style.display = (barrage.style.display === 'none') ? 'block' : 'none';
+    // 同时隐藏/显示弹幕容器和所有弹幕内容
+    const isHidden = barrage.style.display === 'none';
+    barrage.style.display = isHidden ? 'block' : 'none';
+    // 按钮自身始终可见
   };
   // 默认显示
   barrage.style.display = 'block';
