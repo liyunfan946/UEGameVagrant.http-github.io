@@ -388,6 +388,7 @@
   </div>
 
   
+  <script color='255,255,255' opacity='0.7' zIndex='-1' count='88' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
@@ -430,30 +431,6 @@
   <!-- 留言弹幕功能脚本 -->
   <script src="/js/ue5-api-scroll.js"></script>
 
-  <!-- 星空流动特效（canvas-nest.js） -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@2.0.4/dist/canvas-nest.min.js"></script>
-  <script>
-    // 兼容 PJAX，切换页面时自动重载星空特效
-    function loadCanvasNest() {
-      if (window.__canvasNest) {
-        window.__canvasNest.destroy();
-        window.__canvasNest = null;
-      }
-      var CN = window.CanvasNest || window.default;
-      if (typeof CN === 'function') {
-        window.__canvasNest = CN(document.body, {
-          color: '255,255,255',
-          count: 88,
-          opacity: 0.7,
-          zIndex: -1
-        });
-      } else {
-        console.error('CanvasNest 加载失败，未检测到主函数');
-      } // 兼容新版和部分 CDN 变种
-    }
-    if (window.CanvasNest) loadCanvasNest();
-    else window.addEventListener('DOMContentLoaded', loadCanvasNest);
-    document.addEventListener('pjax:complete', loadCanvasNest);
-  </script>
+
 </body>
 </html>
