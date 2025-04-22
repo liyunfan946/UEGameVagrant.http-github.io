@@ -278,42 +278,16 @@
   <p class="site-author-name" itemprop="name">Zoomi</p>
   <div class="site-description" itemprop="description">欢迎来到我的虚幻个人博客，不定期更新</div>
 
-  <!-- 在线音乐播放器（QQ音乐示例歌单） -->
-  <meting-js
-    server="tencent"
-    type="playlist"
-    id="1948308000"
-    fixed="true"
-    mini="true"
-    autoplay="false"
-    order="random"
-    loop="all"
-    theme="#409EFF">
-  </meting-js>
-
-  <!-- 文心一言 AI 助手（网页版嵌入） -->
-  <div style="width:100%;min-width:220px;max-width:320px;margin:0 auto;margin-top:12px;">
-    <iframe 
-      src="https://yiyan.baidu.com/welcome"
-      style="width:100%;height:320px;border:none;border-radius:8px;box-shadow:0 2px 8px #0001;"
-      title="文心一言AI助手"
-      loading="lazy"
-      referrerpolicy="no-referrer">
-    </iframe>
-    <div style="text-align:center;font-size:13px;color:#888;margin-top:2px;">AI助手 · 文心一言</div>
+  <!-- 留言板入口 -->
+  <div style="text-align:center;margin:18px 0 10px 0;">
+    <a href="/message" style="display:inline-block;padding:12px 32px;background:#409EFF;color:#fff;border-radius:16px;font-size:18px;text-decoration:none;box-shadow:0 2px 8px #0001;">💬 留言板</a>
   </div>
-
-  <!-- UE5 API 记忆滚动区 -->
-  <div id="ue5-api-scroller" style="max-height:180px;overflow:hidden;border-radius:8px;background:rgba(64,158,255,0.07);margin:12px 0;padding:8px 4px 8px 8px;box-shadow:0 1px 4px #0001;font-size:13px;"></div>
-  <link rel="stylesheet" href="/css/ue5-api-scroll.css">
-  <script src="/js/ue5-api-scroll.js"></script>
-
   <!-- 当前时间显示 -->
-  <div style="text-align:center;font-size:15px;color:#409EFF;margin-top:12px;">
-    <span id="hexo-current-time"></span>
+  <div style="text-align:center;font-size:15px;color:#409EFF;margin-top:10px;">
+    <span id="hexo-current-time-sidebar"></span>
   </div>
   <script>
-    function updateHexoTime() {
+    function updateHexoTimeSidebar() {
       var now = new Date();
       var y = now.getFullYear();
       var m = (now.getMonth()+1).toString().padStart(2,'0');
@@ -321,50 +295,13 @@
       var h = now.getHours().toString().padStart(2,'0');
       var min = now.getMinutes().toString().padStart(2,'0');
       var s = now.getSeconds().toString().padStart(2,'0');
-      document.getElementById('hexo-current-time').innerText = `${y}-${m}-${d} ${h}:${min}:${s}`;
+      document.getElementById('hexo-current-time-sidebar').innerText = `${y}-${m}-${d} ${h}:${min}:${s}`;
     }
-    setInterval(updateHexoTime, 1000);
-    updateHexoTime();
+    setInterval(updateHexoTimeSidebar, 1000);
+    updateHexoTimeSidebar();
   </script>
 
-  <!-- 天气预报（和风天气） -->
-  <div style="margin:10px 0;text-align:center;">
-    <iframe src="https://widget.qweather.net/simple/static/index.html?location=101010100&lang=zh&unit=c&theme=light" width="100%" height="60" frameborder="0" scrolling="no" style="border-radius:8px;"></iframe>
-  </div>
-
-  <!-- 访客统计（不蒜子） -->
-  <div style="font-size:13px;color:#888;text-align:center;margin-bottom:4px;">
-    <span id="busuanzi_container_site_pv" style="display:inline;">本站访问量：<span id="busuanzi_value_site_pv"></span></span>
-    <span id="busuanzi_container_site_uv" style="display:inline;margin-left:8px;">访客数：<span id="busuanzi_value_site_uv"></span></span>
-  </div>
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  <!-- 留言板入口按钮 -->
-  <div style="text-align:center;margin:8px 0 0 0;">
-    <a href="/message" style="display:inline-block;padding:6px 18px;background:#409EFF;color:#fff;border-radius:16px;font-size:15px;text-decoration:none;box-shadow:0 2px 8px #0001;">💬 留言板</a>
-  </div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">目录</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
-
-
 
       </div>
 
@@ -393,6 +330,48 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
+
+<!-- waifu-tips 看板娘 -->
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/waifu-tips@1.6.2/waifu.min.css">
+<div id="waifu"></div>
+<script src="https://fastly.jsdelivr.net/npm/waifu-tips@1.6.2/waifu-tips.min.js"></script>
+<script>
+  waifuTips({
+    apiPath: 'https://fastly.jsdelivr.net/npm/waifu-tips@1.6.2/',
+    cdnPath: 'https://fastly.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/',
+    tools: true
+  });
+</script>
+<!-- 页面点击特效 -->
+<script>
+var a_idx = 0;
+document.body.addEventListener('click', function(e) {
+  var a = ["富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"];
+  var colors = ["#09f","#f90","#f00","#0c0","#f0f","#0ff","#ff0","#00f","#f60","#c0f"];
+  var $i = document.createElement("span");
+  $i.textContent = a[a_idx];
+  a_idx = (a_idx + 1) % a.length;
+  $i.style.zIndex = 9999;
+  $i.style.position = "absolute";
+  $i.style.fontWeight = "bold";
+  $i.style.color = colors[Math.floor(Math.random()*colors.length)];
+  $i.style.left = (e.pageX - 10) + "px";
+  $i.style.top = (e.pageY - 20) + "px";
+  $i.style.fontSize = "18px";
+  document.body.appendChild($i);
+  var top = parseInt($i.style.top);
+  var id = setInterval(function() {
+    if (top < e.pageY - 180) {
+      clearInterval(id);
+      $i.remove();
+    } else {
+      top -= 2;
+      $i.style.top = top + "px";
+      $i.style.opacity = (parseInt($i.style.top) - (e.pageY - 180)) / 160;
+    }
+  }, 16);
+});
+</script>
 
         
 
